@@ -13,11 +13,6 @@ param (
 
 &'C:\Program Files (x86)\Microsoft Dynamics NAV\110\RoleTailored Client\NavModelTools.ps1'
 
-$dbServerName = "avm-nav-dbl"
-$dbName = "NAV2018-MSX"
-$targetFolder = "C:\Repositories\NAV2018-ObjectMerge\NAV-Objects\NAV2018-MSX\" 
-$tempExportPath = "C:\temp\export\"
-
 # create temp. export folder
 if ((Test-Path -Path $tempExportPath)) {
 	remove-item -Path $tempExportPath -Recurse
