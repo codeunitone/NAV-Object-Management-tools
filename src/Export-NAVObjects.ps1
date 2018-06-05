@@ -33,14 +33,14 @@ foreach ($filter in $objFilterList) {
 foreach ($file in $(Get-ChildItem $tempExportPath -Filter "*.TXT")) {
 	# define subfolders name
 	$objType = $file.Name.Substring(0,3)
-	switch ($objType) {
-		"TAB" { $objTypeFull = "Table" }
-		"PAG" { $objTypeFull = "Page" }
-		"COD" { $objTypeFull = "Codeunit" }
-		"QUE" { $objTypeFull = "Queue" }
-		"XML" { $objTypeFull = "XMLport" }
-		"REP" { $objTypeFull = "Report" }
-		"MEN" { $objTypeFull = "MenuSuite" }
+	$objTypeFull = switch ($objType) {
+		"TAB" { "Table" }
+		"PAG" { "Page" }
+		"COD" { "Codeunit" }
+		"QUE" { "Query" }
+		"XML" { "XMLport" }
+		"REP" { "Report" }
+		"MEN" { "MenuSuite" }
 	}
 
 	# create target folder if does not exist yet
