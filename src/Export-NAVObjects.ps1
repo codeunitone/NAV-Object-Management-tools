@@ -19,10 +19,6 @@ Name of the NAV database
 
 The exported objects will be stored at this location
 
-.PARAMETER tempExportPath
-
-Filtered Objects will be exported into one big txt file and afterwards splited and moved into Subfolders. This parameter defines the location of that export file.
-
 .PARAMETER objFilterList
 
 Text Array of Objects to export. 
@@ -43,13 +39,13 @@ param (
 	[Parameter(Mandatory=$true)] [string] $dbServerName,
 	[Parameter(Mandatory=$true)] [string] $dbName,
 	[Parameter(Mandatory=$true)] [string] $targetFolder,
-	[Parameter(Mandatory=$true)] [string] $tempExportPath,
 	[Parameter(Mandatory=$true)] [string[]] $objFilterList
 )
 
 &'C:\Program Files (x86)\Microsoft Dynamics NAV\110\RoleTailored Client\NavModelTools.ps1'
 
 # create temp. export folder
+$tempExportPath = Join-path $targetFolder -ChildPath "temp"
 if ((Test-Path -Path $tempExportPath)) {
 	remove-item -Path $tempExportPath -Recurse
 }
@@ -90,3 +86,5 @@ foreach ($file in $(Get-ChildItem $tempExportPath -Filter "*.TXT")) {
 	$destinationFile = Join-Path $destinationFolder -ChildPath $File.Name
 	Move-Item $file.FullName -Destination $destinationFile -Force
 }
+
+remove-item $tempExportPath
