@@ -42,7 +42,7 @@ param (
 	[Parameter(Mandatory=$true)] [string[]] $objFilterList
 )
 
-&'C:\Program Files (x86)\Microsoft Dynamics NAV\110\RoleTailored Client\NavModelTools.ps1'
+& "$(Join-Path ${env:ProgramFiles(x86)} -ChildPath "Microsoft Dynamics NAV\110\RoleTailored Client\NavModelTools.ps1")"
 
 # create temp. export folder
 $tempExportPath = Join-path $targetFolder -ChildPath "temp"
