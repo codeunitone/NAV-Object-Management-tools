@@ -25,9 +25,13 @@ Text Array of Objects to export.
 
 .EXAMPLE
 
-Following example exports from the database NAV2018-DEV (located on GWS-NAV-2018QA) all tables within the range of 50000 till 50005 and all pages within the range of 40 and 50.
+Following example exports from the database Cronus AG (located on localhost) all tables within the range of 50000 till 50005 and all pages within the range of 40 and 50.
 
-.\src\Export-NAVObjects.ps1 -dbServerName "GWS-NAV-2018QA" -dbName "NAV2018-DEV" -targetFolder "C:\Temp\NAV-6694\split\" -objFilterList "Type=Table;Id=50000..50005","Type=Page;Id=40..50"
+.\src\Export-NAVObjects.ps1 `
+	-dbServerName "localhost" `
+	-dbName "Cronus AG" `
+	-targetFolder "C:\Temp\split\" `
+	-objFilterList "Type=Table;Id=50000..50005","Type=Page;Id=40..50"
 
 .NOTES
 
