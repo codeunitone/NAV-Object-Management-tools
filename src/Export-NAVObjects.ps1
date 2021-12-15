@@ -56,9 +56,18 @@ $i = 0
 foreach ($filter in $objFilterList) {
 	$i++
 	$exportFile = Join-Path $tempExportPath -ChildPath "temp$i.txt"
-	Export-NAVApplicationObject -DatabaseServer $dbServerName -DatabaseName $dbName -Path $exportFile -Filter $filter -Force
-	Split-NAVApplicationObjectFile -Source $exportFile -Destination $tempExportPath -Force
-	Remove-Item $exportFile	
+	Export-NAVApplicationObject `
+		-DatabaseServer $dbServerName `
+		-DatabaseName $dbName `
+		-Path $exportFile `
+		-Filter $filter `
+		-ExportTxtSkipUnlicensed `
+		-Force
+	Split-NAVApplicationObjectFile `
+		-Source $exportFile `
+		-Destination $tempExportPath `
+		-Force
+	Remove-Item $exportFile
 }
 
 # Move exported object to target folder
